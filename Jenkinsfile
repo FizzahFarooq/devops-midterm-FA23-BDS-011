@@ -65,20 +65,6 @@ pipeline {
       }
     }
 
-    stage('Push to Docker Hub') {
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
-          sh '''
-            echo "$DH_PASS" | docker login -u "$DH_USER" --password-stdin
-            docker tag ${IMAGE}:latest $DH_USER/midterm-fa23-bds-011:latest
-            docker tag ${IMAGE}:latest $DH_USER/midterm-fa23-bds-011:${BUILD_NUMBER}
-            docker push $DH_USER/midterm-fa23-bds-011:latest
-            docker push $DH_USER/midterm-fa23-bds-011:${BUILD_NUMBER}
-          '''
-        }
-      }
-    }
-
     stage('Deploy on EC2') {
       steps {
         sh '''
