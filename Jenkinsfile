@@ -70,7 +70,7 @@ pipeline {
     always {
       emailext(
         from: "${env.SENDER}",
-        to: 'qasimalik@gmail.com',
+        to: 'fizzahfarooq1064@gmail.com',
         subject: "${env.STUDENT_ID} - MIDTERM-${env.STUDENT_ID} - Build #${env.BUILD_NUMBER} ${currentBuild.currentResult}",
         body: """Student Reg No: ${env.STUDENT_ID}
 Result: ${currentBuild.currentResult}
